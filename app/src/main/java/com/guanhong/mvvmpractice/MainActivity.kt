@@ -3,6 +3,7 @@ package com.guanhong.mvvmpractice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -18,13 +19,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private var binding: ActivityMainBinding? = null
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val rootView = LayoutInflater.from(this).inflate( R.layout.activity_main, null)
+        binding = ActivityMainBinding.bind(rootView)
+        setContentView(binding.root)
 
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        
         getAllPlayer()
     }
 
