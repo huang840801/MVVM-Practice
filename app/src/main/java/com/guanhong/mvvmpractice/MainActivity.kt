@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        
+//        test
         getAllPlayer()
     }
 
