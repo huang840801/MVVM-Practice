@@ -1,13 +1,15 @@
-package com.guanhong.mvvmpractice
+package com.guanhong.mvvmpractice.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
+import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.api.AllPlayerApi
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
@@ -24,12 +26,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val rootView = LayoutInflater.from(this).inflate( R.layout.activity_main, null)
+        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
         binding = ActivityMainBinding.bind(rootView)
         setContentView(binding.root)
 
 //        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        
+
         getAllPlayer()
     }
 
@@ -42,7 +44,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAllPlayer() {
+    fun onProfileBtnClick(view: View){
+
+        val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
+
+    }
+
+    open fun getAllPlayer() {
 
         val retrofit = Retrofit
             .Builder()
@@ -62,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
-                binding!!.dataItem = response.body().data!![0]
+                binding.dataItem = response.body().data!![0]
             }
         })
     }
