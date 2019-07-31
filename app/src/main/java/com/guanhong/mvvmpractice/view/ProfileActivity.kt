@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.view.fragment.first.FirstFragment
+import com.guanhong.mvvmpractice.view.fragment.second.SecondFragment
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {

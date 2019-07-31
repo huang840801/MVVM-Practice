@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    open fun getAllPlayer() {
+    fun getAllPlayer() {
 
         val retrofit = Retrofit
             .Builder()

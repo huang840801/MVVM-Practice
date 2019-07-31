@@ -1,4 +1,4 @@
-package com.guanhong.mvvmpractice.view
+package com.guanhong.mvvmpractice.view.fragment.second
 
 import android.os.Bundle
 import android.util.Log
@@ -8,39 +8,34 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.api.AllPlayerApi
-import com.guanhong.mvvmpractice.databinding.FragmentFirstBinding
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
+import kotlinx.android.synthetic.main.fragment_second.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class FirstFragment : Fragment() {
-
-    lateinit var binding: FragmentFirstBinding
+class SecondFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val rootView = LayoutInflater.from(context).inflate(R.layout.fragment_first, null)
-        binding = FragmentFirstBinding.bind(rootView)
-
-        return rootView
-
-//        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_second, container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getAllPlayer()
+        val adapter = SecondAdapter()
+        recyclerView.adapter = adapter
+
     }
 
-    fun newInstance(): FirstFragment {
-        return FirstFragment()
+    fun newInstance(): SecondFragment {
+        return SecondFragment()
     }
 
-    private fun getAllPlayer() {
+    fun getAllPlayer() {
 
         val retrofit = Retrofit
                 .Builder()
@@ -60,7 +55,7 @@ class FirstFragment : Fragment() {
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
-                binding.dataItem = response.body().data!![0]
+//                binding.dataItem = response.body().data!![0]
             }
         })
     }
