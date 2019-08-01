@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.databinding.ItemPlayerProfileBinding
 import com.guanhong.mvvmpractice.response.player.DataItem
 
 class SecondAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -11,9 +12,9 @@ class SecondAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var dataList: List<DataItem> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_player_profile, parent, false)
-        val holder = SecondHolder(view)
-        return holder.setResource()
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemPlayerProfileBinding.inflate(layoutInflater, parent, false)
+        return SecondHolder(binding)
     }
 
     override fun getItemCount(): Int = dataList.count()
