@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.api.AllPlayerApi
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
@@ -18,6 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SecondFragment : Fragment() {
 
+    lateinit var adapter : SecondAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return inflater.inflate(R.layout.fragment_second, container,false)
@@ -26,9 +29,11 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = SecondAdapter()
+        adapter = SecondAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
+        getAllPlayer()
     }
 
     fun newInstance(): SecondFragment {
@@ -50,12 +55,11 @@ class SecondFragment : Fragment() {
         call.enqueue(object : Callback<AllPlayerData> {
             override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
                 Log.d("Huang", " get player fail ")
-
             }
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
-//                binding.dataItem = response.body().data!![0]
+                adapter.bindDataList(response.body().data!!)
             }
         })
     }
