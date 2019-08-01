@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVVM Practice</string>
+    <string name="player_name">%1$s&#160;%2$s</string>
+    <string name="high_feet"> High feet : %s</string>
 </resources>

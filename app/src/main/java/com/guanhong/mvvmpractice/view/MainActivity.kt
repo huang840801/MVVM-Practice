@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         val allPlayerData = retrofit.create(AllPlayerApi::class.java)
 
-        val call = allPlayerData.getAllPlayer(3)
+        val call = allPlayerData.getAllPlayer(2)
 
         call.enqueue(object : Callback<AllPlayerData> {
             override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
