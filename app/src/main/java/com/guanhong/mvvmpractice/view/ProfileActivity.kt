@@ -23,7 +23,6 @@ class ProfileActivity : AppCompatActivity() {
 
         initFragment()
         setupViewPager()
-
     }
 
     private fun setupViewPager() {
@@ -50,5 +49,4 @@ class ViewPagerAdapter(fragmentManager: FragmentManager,
     override fun getItem(position: Int): Fragment = fragmentList[position]
 
     override fun getCount(): Int = fragmentList.count()
-
 }

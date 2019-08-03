@@ -3,21 +3,16 @@ package com.guanhong.mvvmpractice.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.guanhong.mvvmpractice.R
-import com.guanhong.mvvmpractice.api.AllPlayerApi
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
-import com.guanhong.mvvmpractice.response.player.AllPlayerData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
+import com.guanhong.mvvmpractice.repository.MainRepository
+import com.guanhong.mvvmpractice.response.player.DataItem
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,12 +21,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
-        binding = ActivityMainBinding.bind(rootView)
-        setContentView(binding.root)
+//        binding 的第一種方法
+//        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
+//        binding = ActivityMainBinding.bind(rootView)
+//        setContentView(binding.root)
 
-//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        
+//        binding 的第二種方法
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         getAllPlayer()
     }
 
@@ -44,34 +41,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onProfileBtnClick(view: View){
+    fun onProfileBtnClick(view: View) {
 
         val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
 
     }
 
-    fun getAllPlayer() {
+    private fun getAllPlayer() {
 
-        val retrofit = Retrofit
-            .Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://free-nba.p.rapidapi.com/")
-            .build()
+        val repository = MainRepository()
 
-        val allPlayerData = retrofit.create(AllPlayerApi::class.java)
-
-        val call = allPlayerData.getAllPlayer(2)
-
-        call.enqueue(object : Callback<AllPlayerData> {
-            override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
-                Log.d("Huang", " get player fail ")
-
-            }
-
-            override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
-
-                binding.dataItem = response.body().data!![0]
+        repository.getAllPlayer(object : GetAllPlayerCallback {
+            override fun onSuccess(dataItemList: List<DataItem>) {
+                binding.dataItem = dataItemList[0]
             }
         })
     }

@@ -8,8 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guanhong.mvvmpractice.R
-import com.guanhong.mvvmpractice.api.AllPlayerApi
+import com.guanhong.mvvmpractice.api.TupianApi
+import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
+import com.guanhong.mvvmpractice.interface1.GetTupianCallback
+import com.guanhong.mvvmpractice.repository.MainRepository
+import com.guanhong.mvvmpractice.response.funny.Tupian
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
+import com.guanhong.mvvmpractice.response.player.DataItem
 import kotlinx.android.synthetic.main.fragment_second.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,11 +24,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class SecondFragment : Fragment() {
 
-    lateinit var adapter : SecondAdapter
+    lateinit var adapter: SecondAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.fragment_second, container,false)
+        return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,33 +38,30 @@ class SecondFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-        getAllPlayer()
+//        getAllPlayer()
+        getTupian()
     }
 
     fun newInstance(): SecondFragment {
         return SecondFragment()
     }
 
-    fun getAllPlayer() {
+    private fun getAllPlayer() {
 
-        val retrofit = Retrofit
-                .Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://free-nba.p.rapidapi.com/")
-                .build()
-
-        val allPlayerData = retrofit.create(AllPlayerApi::class.java)
-
-        val call = allPlayerData.getAllPlayer(3)
-
-        call.enqueue(object : Callback<AllPlayerData> {
-            override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
-                Log.d("Huang", " get player fail ")
+        val repository = MainRepository()
+        repository.getAllPlayer(object : GetAllPlayerCallback {
+            override fun onSuccess(dataItemList: List<DataItem>) {
+                adapter.bindAllPlayerDataList(dataItemList)
             }
+        })
+    }
 
-            override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
+    private fun getTupian() {
 
-                adapter.bindDataList(response.body().data!!)
+        val repository = MainRepository()
+        repository.getTupian(object : GetTupianCallback {
+            override fun onSuccess(tupianList: List<Tupian>) {
+                adapter.bindTupainList(tupianList)
             }
         })
     }
