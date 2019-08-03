@@ -6,6 +6,5 @@ data class AllPlayerData(
     @SerializedName("data")
     val data: List<DataItem>?,
     @SerializedName("meta")
-    val meta: Meta,
-    var imageUrl: String
+    val meta: Meta
 )

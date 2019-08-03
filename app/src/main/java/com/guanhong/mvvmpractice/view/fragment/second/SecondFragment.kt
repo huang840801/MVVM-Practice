@@ -38,8 +38,8 @@ class SecondFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
 
-//        getAllPlayer()
-        getTupian()
+        getAllPlayer()
+//        getTupian()
     }
 
     fun newInstance(): SecondFragment {

@@ -25,7 +25,7 @@ class SecondAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is SecondHolder -> {
                 holder.setAllPlayerResult(allPlayerDataList[position])
-                holder.setTupianResult(tupianList[position])
+//                holder.setTupianResult(tupianList[position])
             }
         }
     }

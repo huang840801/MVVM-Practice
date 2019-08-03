@@ -18,5 +18,7 @@ data class DataItem(
     @SerializedName("team")
     val team: Team?,
     @SerializedName("first_name")
-    var firstName: String = ""
+    var firstName: String = "",
+
+    var imageUrl: String
 )

@@ -34,7 +34,10 @@ class MainRepository {
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
-                response.body().imageUrl = "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
+                response.body().data!!.forEach {
+                    it.imageUrl = "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
+                }
+
                 callback.onSuccess(response.body().data!!)
             }
         })
