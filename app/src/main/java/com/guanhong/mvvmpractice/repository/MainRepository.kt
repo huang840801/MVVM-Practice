@@ -34,11 +34,11 @@ class MainRepository {
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
-                response.body().data!!.forEach {
+                response.body()!!.data!!.forEach {
                     it.imageUrl = "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
-                callback.onSuccess(response.body().data!!)
+                callback.onSuccess(response.body()!!.data!!)
             }
         })
     }
@@ -62,7 +62,7 @@ class MainRepository {
 
             override fun onResponse(call: Call<List<Tupian>>?, response: Response<List<Tupian>>?) {
                 Log.d("Huang", " get tupian success ")
-                callback.onSuccess(response!!.body())
+                callback.onSuccess(response!!.body()!!)
             }
         })
     }
