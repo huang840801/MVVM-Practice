@@ -10,7 +10,6 @@ class SecondHolder(private val binding: ItemPlayerProfileBinding) : RecyclerView
 
     fun setAllPlayerResult(dataItem: DataItem) {
 
-        Glide.with(binding.root.context).load(dataItem.imageUrl).into(binding.image)
         binding.dataItem = dataItem
         binding.executePendingBindings()
     }
