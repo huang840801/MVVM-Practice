@@ -13,10 +13,12 @@ import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.response.player.DataItem
+import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +31,9 @@ class MainActivity : AppCompatActivity() {
 //        binding 的第二種方法
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        getAllPlayer()
+        viewModel = MainViewModel()
+        binding.viewModel = viewModel
+//        getAllPlayer()
     }
 
     fun onViewClick(view: View) {
@@ -46,6 +50,11 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
 
+    }
+
+    fun refreshData(view: View){
+
+        viewModel.refresh()
     }
 
     private fun getAllPlayer() {
