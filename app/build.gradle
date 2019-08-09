@@ -30,6 +30,10 @@ android {
 }
 
 dependencies {
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     //gson
@@ -40,6 +44,9 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

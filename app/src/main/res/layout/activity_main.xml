@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="allPlayerData"
-            type="com.guanhong.mvvmpractice.response.player.AllPlayerData" />
-
-        <variable
             name="dataItem"
             type="com.guanhong.mvvmpractice.response.player.DataItem" />
 
@@ -30,7 +26,6 @@
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:onClick="onViewClick"
-            android:text="@{@string/player_name(viewModel.dataItem.firstName, viewModel.dataItem.lastName)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

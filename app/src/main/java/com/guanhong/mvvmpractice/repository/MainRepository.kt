@@ -1,6 +1,7 @@
 package com.guanhong.mvvmpractice.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.guanhong.mvvmpractice.api.AllPlayerApi
 import com.guanhong.mvvmpractice.callback.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
@@ -15,10 +16,10 @@ class MainRepository {
     fun getAllPlayer(callback: GetAllPlayerCallback) {
 
         val retrofit = Retrofit
-                .Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("https://free-nba.p.rapidapi.com/")
-                .build()
+            .Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://free-nba.p.rapidapi.com/")
+            .build()
 
         val allPlayerData = retrofit.create(AllPlayerApi::class.java)
 
