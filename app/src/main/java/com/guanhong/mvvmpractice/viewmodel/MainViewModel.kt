@@ -1,7 +1,8 @@
 package com.guanhong.mvvmpractice.viewmodel
 
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
-import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
+import com.guanhong.mvvmpractice.callback.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.response.player.DataItem
 
@@ -12,16 +13,29 @@ class MainViewModel {
     val data = ObservableField<List<DataItem>>()
     val dataItem = ObservableField<DataItem>()
 
+    val isLoading = ObservableBoolean()
+
     private var playerNo = 0
 
-    fun refresh(){
+    fun refresh() {
+        getAllPlayer()
+    }
 
-        repository.getAllPlayer(object :GetAllPlayerCallback{
+    fun init() {
+        getAllPlayer()
+    }
+
+    private fun getAllPlayer() {
+
+        isLoading.set(true)
+
+        repository.getAllPlayer(object : GetAllPlayerCallback {
             override fun onSuccess(dataItemList: List<DataItem>) {
                 data.set(dataItemList)
                 dataItem.set(dataItemList[playerNo])
 
-                playerNo ++
+                isLoading.set(false)
+                playerNo++
             }
         })
     }

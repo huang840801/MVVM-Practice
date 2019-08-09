@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.databinding.FragmentFirstBinding
-import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
+import com.guanhong.mvvmpractice.callback.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.response.player.DataItem
 
@@ -22,6 +22,7 @@ class FirstFragment : Fragment() {
 
         return rootView
 
+//        original code
 //        return inflater.inflate(R.layout.fragment_first, container, false)
     }
 

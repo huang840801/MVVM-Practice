@@ -3,16 +3,12 @@ package com.guanhong.mvvmpractice.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
-import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
-import com.guanhong.mvvmpractice.repository.MainRepository
-import com.guanhong.mvvmpractice.response.player.DataItem
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -30,10 +26,10 @@ class MainActivity : AppCompatActivity() {
 
 //        binding 的第二種方法
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         viewModel = MainViewModel()
+
         binding.viewModel = viewModel
-//        getAllPlayer()
+        viewModel.init()
     }
 
     fun onViewClick(view: View) {
@@ -49,23 +45,6 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
-
-    }
-
-    fun refreshData(view: View){
-
-        viewModel.refresh()
-    }
-
-    private fun getAllPlayer() {
-
-        val repository = MainRepository()
-
-        repository.getAllPlayer(object : GetAllPlayerCallback {
-            override fun onSuccess(dataItemList: List<DataItem>) {
-                binding.dataItem = dataItemList[0]
-            }
-        })
     }
 
     private fun showToast(msg: String) {

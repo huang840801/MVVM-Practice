@@ -2,10 +2,7 @@ package com.guanhong.mvvmpractice.repository
 
 import android.util.Log
 import com.guanhong.mvvmpractice.api.AllPlayerApi
-import com.guanhong.mvvmpractice.api.TupianApi
-import com.guanhong.mvvmpractice.interface1.GetAllPlayerCallback
-import com.guanhong.mvvmpractice.interface1.GetTupianCallback
-import com.guanhong.mvvmpractice.response.funny.Tupian
+import com.guanhong.mvvmpractice.callback.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,10 +15,10 @@ class MainRepository {
     fun getAllPlayer(callback: GetAllPlayerCallback) {
 
         val retrofit = Retrofit
-            .Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://free-nba.p.rapidapi.com/")
-            .build()
+                .Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("https://free-nba.p.rapidapi.com/")
+                .build()
 
         val allPlayerData = retrofit.create(AllPlayerApi::class.java)
 
@@ -39,30 +36,6 @@ class MainRepository {
                 }
 
                 callback.onSuccess(response.body()!!.data!!)
-            }
-        })
-    }
-
-    fun getTupian(callback: GetTupianCallback) {
-
-        val retrofit = Retrofit
-            .Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("http://api.laifudao.com/open/")
-            .build()
-
-        val tupian = retrofit.create(TupianApi::class.java)
-
-        val call = tupian.getTupian()
-
-        call.enqueue(object : Callback<List<Tupian>> {
-            override fun onFailure(call: Call<List<Tupian>>?, t: Throwable?) {
-                Log.d("Huang", " get tupian fail ")
-            }
-
-            override fun onResponse(call: Call<List<Tupian>>?, response: Response<List<Tupian>>?) {
-                Log.d("Huang", " get tupian success ")
-                callback.onSuccess(response!!.body()!!)
             }
         })
     }
