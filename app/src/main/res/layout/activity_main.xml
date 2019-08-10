@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="dataItem"
-            type="com.guanhong.mvvmpractice.response.player.DataItem" />
-
-        <variable
             name="viewModel"
             type="com.guanhong.mvvmpractice.viewmodel.MainViewModel" />
     </data>
@@ -24,6 +20,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:text="@{@string/player_name(viewModel.dataItem.firstName, viewModel.dataItem.lastName)}"
             android:gravity="center"
             android:onClick="onViewClick"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -36,6 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:gravity="center"
+            android:textSize="24dp"
+            android:textColor="@color/black"
             android:onClick="onViewClick"
             android:text="@{@string/high_feet(viewModel.dataItem.heightFeet.toString())}"
             app:layout_constraintLeft_toLeftOf="parent"
