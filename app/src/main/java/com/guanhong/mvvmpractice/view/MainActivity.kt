@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
 //        binding 的第二種方法
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        
+
         binding.lifecycleOwner = this    // set lifecycle owner for Livedata in xml
         binding.viewModel = viewModel
 
