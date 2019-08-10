@@ -29,7 +29,6 @@ class SecondFragment : Fragment() {
         recyclerView.adapter = adapter
 
         getAllPlayer()
-//        getTupian()
     }
 
     fun newInstance(): SecondFragment {

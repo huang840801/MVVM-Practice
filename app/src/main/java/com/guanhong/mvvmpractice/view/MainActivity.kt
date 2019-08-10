@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
 //        binding 的第一種方法
 //        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
 //        binding = ActivityMainBinding.bind(rootView)
@@ -27,9 +29,8 @@ class MainActivity : AppCompatActivity() {
 
 //        binding 的第二種方法
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        
         binding.lifecycleOwner = this    // set lifecycle owner for Livedata in xml
-
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = viewModel
 
         viewModel.init()
