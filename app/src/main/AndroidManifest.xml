@@ -14,12 +14,13 @@
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".view.ProfileActivity"/>
+        <activity android:name=".view.SpinnerSampleActivity"/>
     </application>
 
 </manifest>
