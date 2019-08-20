@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".view.ProfileActivity"/>
         <activity android:name=".view.SpinnerSampleActivity"/>
+        <activity android:name=".view.TestActivity"/>
     </application>
 
 </manifest>

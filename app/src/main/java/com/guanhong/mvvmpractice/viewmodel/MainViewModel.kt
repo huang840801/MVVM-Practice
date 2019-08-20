@@ -9,7 +9,8 @@ import com.guanhong.mvvmpractice.response.player.DataItem
 
 class MainViewModel : ViewModel() {
 
-    val dataItem = MutableLiveData<DataItem>()
+    var dataItem = MutableLiveData<DataItem>()
+    //    lateinit var dataItem: DataItem
     val isLoading = ObservableBoolean()
 
     private var playerNo = 0
@@ -32,11 +33,10 @@ class MainViewModel : ViewModel() {
         repository.getAllPlayer(object : GetAllPlayerCallback {
             override fun onSuccess(dataItemList: List<DataItem>) {
 
-                dataItem.value = (dataItemList[playerNo])
+                dataItem.value = (dataItemList[playerNo++])
 //                dataItem.postValue (dataItemList[playerNo])
 
                 isLoading.set(false)
-                playerNo++
             }
         })
     }

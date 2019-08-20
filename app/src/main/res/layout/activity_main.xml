@@ -4,10 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="java.util.ArrayList" />
 
         <variable
             name="viewModel"
             type="com.guanhong.mvvmpractice.viewmodel.MainViewModel" />
+
+        <variable
+            name="cityList"
+            type="java.util.ArrayList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,7 +78,7 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:elevation="10dp"
-            app:visibility="@{viewModel.isLoading()}">
+            app:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}">
 
             <ProgressBar
                 android:layout_width="wrap_content"
