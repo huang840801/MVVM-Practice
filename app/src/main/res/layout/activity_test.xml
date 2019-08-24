@@ -49,6 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:onClick="@{() -> viewModel.onClick(viewModel.test)}"
-            android:text="@{article.content}" />
+            android:text="@{String.valueOf(article.num)}" />
     </LinearLayout>
 </layout>

@@ -1,13 +1,13 @@
 package com.guanhong.mvvmpractice.view
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.databinding.ActivityTestBinding
 import com.guanhong.mvvmpractice.viewmodel.TestArticle
 import com.guanhong.mvvmpractice.viewmodel.TestViewModel
+import java.util.*
 
 class TestActivity : AppCompatActivity() {
 
@@ -25,23 +25,14 @@ class TestActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         binding.article = article
 
-        Handler().postDelayed({
-//            viewModel.updateUserName("James 0 ")
-            article.updateData("111","aaa")
+        var num = 0
 
-        }, 2000)
-        Handler().postDelayed({
-//            viewModel.updateUserName("James 1 ")
-            article.updateData("222","bbb")
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
 
+                article.upDateNum(num++)
+            }
 
-        }, 4000)
-        Handler().postDelayed({
-//            viewModel.updateUserName("James 2 ")
-            article.updateData("333","ccc")
-
-        }, 6000)
-//        viewModel.updateCityList()
+        }, 0, 2000)
     }
-
 }

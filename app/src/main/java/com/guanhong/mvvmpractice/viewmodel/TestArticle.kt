@@ -12,6 +12,8 @@ class TestArticle : BaseObservable() {
     var content: String = ""
     @Bindable
     var color: Long = 0
+    @Bindable
+    var num: Int = 0
 
     fun updateTitle(title: String) {
 
@@ -28,6 +30,12 @@ class TestArticle : BaseObservable() {
         color = 0XFF2196F3
         notifyPropertyChanged(BR.title)
 
+        notifyChange()
+    }
+
+    fun upDateNum(num: Int) {
+
+        this.num = num
         notifyChange()
     }
 }

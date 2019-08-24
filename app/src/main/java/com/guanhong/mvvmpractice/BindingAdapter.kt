@@ -1,5 +1,6 @@
 package com.guanhong.mvvmpractice
 
+import android.graphics.Color
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -13,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.guanhong.mvvmpractice.response.player.DataItem
 import com.guanhong.mvvmpractice.view.fragment.player.PlayerAdapter
+import android.graphics.drawable.ColorDrawable
+import androidx.databinding.BindingConversion
 
 @BindingAdapter("imageUrl")
 fun bindImage(imageView: ImageView, imageUrl: String) {
 
     Glide.with(imageView.context)
-            .load(imageUrl)
-            .into(imageView)
+        .load(imageUrl)
+        .into(imageView)
 }
 
 @BindingAdapter("visibility")
@@ -46,9 +49,11 @@ fun bindRecyclerViewWithDataItemList(recyclerView: RecyclerView, dataItemList: L
 @BindingAdapter("spinnerList")
 fun setSpinnerList(spinner: Spinner, contentList: ObservableField<List<String>>) {
 
-    val adapter = ArrayAdapter(spinner.context,
-            android.R.layout.simple_spinner_dropdown_item,
-            contentList.get()!!)
+    val adapter = ArrayAdapter(
+        spinner.context,
+        android.R.layout.simple_spinner_dropdown_item,
+        contentList.get()!!
+    )
     spinner.adapter = adapter
 
 }
@@ -77,4 +82,9 @@ fun setSpinnerOnChangeListener(spinner: Spinner, listener: InverseBindingListene
         override fun onNothingSelected(parent: AdapterView<*>?) {
         }
     }
+}
+
+@BindingConversion
+fun convertStringToColorDrawable(color: String): ColorDrawable {
+    return ColorDrawable(Color.parseColor(color))
 }

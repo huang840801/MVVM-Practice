@@ -3,7 +3,6 @@ package com.guanhong.mvvmpractice.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -47,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onProfileBtnClick(view: View) {
-
 
 //        val intent = Intent(this, ProfileActivity::class.java)
         val intent = Intent(this, TestActivity::class.java)

@@ -10,8 +10,8 @@ import com.guanhong.mvvmpractice.response.player.DataItem
 class MainViewModel : ViewModel() {
 
     var dataItem = MutableLiveData<DataItem>()
-    //    lateinit var dataItem: DataItem
     val isLoading = ObservableBoolean()
+    var color = "#FF5722"
 
     private var playerNo = 0
 

@@ -1,21 +1,18 @@
 package com.guanhong.mvvmpractice.viewmodel
 
-import android.database.Observable
-import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 
 class TestViewModel {
 
-    var userName = ObservableField<String>()
+    var userName = ObservableInt()
     var userId: Int = 30
     var test: Boolean = false
     val cityList: MutableList<City> = mutableListOf()
 
      var city = ObservableField<City>()
 
-    fun updateUserName(userName: String) {
-
-        Log.d("Huang", " updateUserName "+userName)
+    fun updateUserName(userName: Int) {
 
         this.userName.set(userName)
     }
