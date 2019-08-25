@@ -48,7 +48,8 @@ class MainActivity : AppCompatActivity() {
     fun onProfileBtnClick(view: View) {
 
 //        val intent = Intent(this, ProfileActivity::class.java)
-        val intent = Intent(this, TestActivity::class.java)
+        val intent = Intent(this, SpinnerSampleActivity::class.java)
+//        val intent = Intent(this, TestActivity::class.java)
         startActivity(intent)
     }
 
