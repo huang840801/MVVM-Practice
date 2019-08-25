@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
+import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         when (view) {
             is TextView -> {
-                showToast(view.text.toString())
+                showToast(this, view.text.toString())
             }
         }
     }
@@ -48,12 +49,9 @@ class MainActivity : AppCompatActivity() {
     fun onProfileBtnClick(view: View) {
 
 //        val intent = Intent(this, ProfileActivity::class.java)
-        val intent = Intent(this, SpinnerSampleActivity::class.java)
+//        val intent = Intent(this, SpinnerSampleActivity::class.java)
 //        val intent = Intent(this, TestActivity::class.java)
+        val intent = Intent(this, LiveDataActivity::class.java)
         startActivity(intent)
-    }
-
-    private fun showToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }
