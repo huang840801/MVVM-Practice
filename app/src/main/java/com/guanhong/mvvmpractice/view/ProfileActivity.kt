@@ -8,12 +8,16 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.view.fragment.spinner.SpinnerFragment
 import com.guanhong.mvvmpractice.view.fragment.player.PlayerFragment
+import com.guanhong.mvvmpractice.view.fragment.test1.Test1Fragment
+import com.guanhong.mvvmpractice.view.fragment.test2.Test2Fragment
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var spinnerFragment: SpinnerFragment
     private lateinit var playerFragment: PlayerFragment
+    private lateinit var test1Fragment: Test1Fragment
+    private lateinit var test2Fragment: Test2Fragment
 
     private val fragmentList: MutableList<Fragment> = mutableListOf()
 
@@ -34,11 +38,17 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initFragment() {
 
-        spinnerFragment = SpinnerFragment().newInstance()
-        playerFragment = PlayerFragment().newInstance()
+//        spinnerFragment = SpinnerFragment().newInstance()
+//        playerFragment = PlayerFragment().newInstance()
+//
+//        fragmentList.add(playerFragment)
+//        fragmentList.add(spinnerFragment)
+//
+        test1Fragment = Test1Fragment().newInstance()
+        test2Fragment = Test2Fragment().newInstance()
 
-        fragmentList.add(playerFragment)
-        fragmentList.add(spinnerFragment)
+        fragmentList.add(test1Fragment)
+        fragmentList.add(test2Fragment)
     }
 }
 
