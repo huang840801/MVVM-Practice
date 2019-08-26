@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.database.RoomDbHelper
+import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +38,16 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.init()
+
+        val db = RoomDbHelper(this)
+
+        GlobalScope.launch {
+
+            db.getRoomDao().insertAll(RoomEntity().apply {
+                id = 840801
+                name = "Huang"
+            })
+        }
     }
 
     fun onViewClick(view: View) {

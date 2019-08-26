@@ -1,16 +1,20 @@
 package com.guanhong.mvvmpractice.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.database.RoomDbHelper
 import com.guanhong.mvvmpractice.view.fragment.spinner.SpinnerFragment
 import com.guanhong.mvvmpractice.view.fragment.player.PlayerFragment
 import com.guanhong.mvvmpractice.view.fragment.test1.Test1Fragment
 import com.guanhong.mvvmpractice.view.fragment.test2.Test2Fragment
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -27,6 +31,18 @@ class ProfileActivity : AppCompatActivity() {
 
         initFragment()
         setupViewPager()
+
+        val db = RoomDbHelper(this)
+
+        GlobalScope.launch {
+            val data = db.getRoomDao().getAll()
+
+            data.forEach {
+                Log.d("Huang", " id = "+it.id)
+                Log.d("Huang", " name = "+it.name)
+                Log.d("Huang", " time = "+it.time)
+            }
+        }
     }
 
     private fun setupViewPager() {
