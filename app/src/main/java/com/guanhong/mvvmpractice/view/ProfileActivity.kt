@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.database.RoomDbHelper
+import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.view.fragment.spinner.SpinnerFragment
 import com.guanhong.mvvmpractice.view.fragment.player.PlayerFragment
 import com.guanhong.mvvmpractice.view.fragment.test1.Test1Fragment
@@ -37,11 +38,15 @@ class ProfileActivity : AppCompatActivity() {
         GlobalScope.launch {
             val data = db.getRoomDao().getAll()
 
+            if (data != null) {
+
             data.forEach {
-                Log.d("Huang", " id = "+it.id)
-                Log.d("Huang", " name = "+it.name)
-                Log.d("Huang", " time = "+it.time)
+                Log.d("Huang", " id = " + it.id)
+                Log.d("Huang", " name = " + it.name)
+                Log.d("Huang", " time = " + it.time)
             }
+            }
+
         }
     }
 

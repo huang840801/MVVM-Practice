@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
 import com.guanhong.mvvmpractice.database.RoomDbHelper
-import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
@@ -43,10 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch {
 
-            db.getRoomDao().insertAll(RoomEntity().apply {
-                id = 840801
-                name = "Huang"
-            })
+            val aa = db.getRoomDao().findByName("Su")
+            aa.name = "Su Update"
+
+            db.getRoomDao().update(aa)
         }
     }
 

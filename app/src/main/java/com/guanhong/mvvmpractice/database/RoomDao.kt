@@ -6,20 +6,20 @@ import androidx.room.*
 interface RoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(item: RoomEntity):Long
+    fun insert(item: RoomEntity): Long
 
     @Query("SELECT * FROM room_entity")
     fun getAll(): List<RoomEntity>
 
     @Query("SELECT * FROM room_entity WHERE name LIKE :name")
-    fun findByTitle(name: String): RoomEntity
+    fun findByName(name: String): RoomEntity
 
     @Insert
-    fun insertAll(vararg todo: RoomEntity)
+    fun insertAll(item: RoomEntity)
 
     @Delete
-    fun delete(todo: RoomEntity)
+    fun delete(item: RoomEntity)
 
     @Update
-    fun updateTodo(vararg todos: RoomEntity)
+    fun update(item: RoomEntity)
 }
