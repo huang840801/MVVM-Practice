@@ -23,4 +23,7 @@ class RoomEntity {
 
     @Ignore
     var ignoreText = ""
+
+    var imageUrl = ""
+
 }
