@@ -7,7 +7,7 @@ import com.guanhong.mvvmpractice.callback.GetAllPlayerCallback
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.response.player.DataItem
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val repository: MainRepository) : ViewModel() {
 
     var dataItem = MutableLiveData<DataItem>()
     val isLoading = ObservableBoolean()
@@ -15,7 +15,7 @@ class MainViewModel : ViewModel() {
 
     private var playerNo = 0
 
-    private val repository = MainRepository()
+//    private val repository = MainRepository()
 
     fun refresh() {
 

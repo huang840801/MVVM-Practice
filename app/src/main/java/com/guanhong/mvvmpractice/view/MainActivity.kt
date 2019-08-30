@@ -12,6 +12,8 @@ import com.guanhong.mvvmpractice.database.RoomDbHelper
 import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
+import com.guanhong.mvvmpractice.factory.ViewModelFactory
+import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,7 +26,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val factory = ViewModelFactory(MainRepository())
+        viewModel = ViewModelProviders.of(this,factory).get(MainViewModel::class.java)
+
+//        viewModel = ViewModelProviders.
+//        val factory = ViewModelFactory().
 
 //        binding 的第一種方法
 //        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
@@ -62,9 +68,9 @@ class MainActivity : AppCompatActivity() {
 
     fun onProfileBtnClick(view: View) {
 
-        val intent = Intent(this, ProfileActivity::class.java)
+//        val intent = Intent(this, ProfileActivity::class.java)
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
-//        val intent = Intent(this, TestActivity::class.java)
+        val intent = Intent(this, TestActivity::class.java)
 //        val intent = Intent(this, LiveDataActivity::class.java)
         startActivity(intent)
     }
