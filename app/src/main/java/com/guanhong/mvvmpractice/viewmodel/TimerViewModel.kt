@@ -3,7 +3,7 @@ package com.guanhong.mvvmpractice.viewmodel
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 
-class TestViewModel {
+class TimerViewModel {
 
     var userName = ObservableInt()
     var userId: Int = 30

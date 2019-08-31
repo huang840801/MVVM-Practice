@@ -13,7 +13,7 @@ class PlayerFragmentViewModel : ViewModel() {
 
     lateinit var repository: PlayerRepository
 
-    lateinit var isLoading: ObservableBoolean
+    lateinit var isLoading: MutableLiveData<Boolean>
     lateinit var observablePage: ObservableInt
     lateinit var dataItemList: MutableLiveData<List<DataItem>>
 
@@ -28,7 +28,7 @@ class PlayerFragmentViewModel : ViewModel() {
 
         repository = PlayerRepository()
         dataItemList = MutableLiveData()
-        isLoading = ObservableBoolean()
+        isLoading = MutableLiveData()
         observablePage = ObservableInt()
 
         getAllPlayer(page)
@@ -38,7 +38,7 @@ class PlayerFragmentViewModel : ViewModel() {
 
         Log.d("Huang", " page1 = $page")
 
-        isLoading.set(true)
+        isLoading.value = true
 
         repository.getAllPlayer(page, object : GetAllPlayerCallback {
             override fun onSuccess(dataItemList: List<DataItem>) {
@@ -47,7 +47,7 @@ class PlayerFragmentViewModel : ViewModel() {
                 this@PlayerFragmentViewModel.page++
 
                 observablePage.set(page)
-                isLoading.set(false)
+                isLoading.value = false
             }
         })
     }

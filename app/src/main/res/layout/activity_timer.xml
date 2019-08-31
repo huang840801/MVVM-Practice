@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.guanhong.mvvmpractice.viewmodel.TestViewModel" />
+            type="com.guanhong.mvvmpractice.viewmodel.TimerViewModel" />
 
         <variable
             name="city"
