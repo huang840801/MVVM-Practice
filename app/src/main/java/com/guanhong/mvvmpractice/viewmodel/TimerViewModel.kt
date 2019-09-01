@@ -1,9 +1,11 @@
 package com.guanhong.mvvmpractice.viewmodel
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
+import androidx.lifecycle.ViewModel
 
-class TimerViewModel {
+class TimerViewModel :ViewModel(){
 
     var userName = ObservableInt()
     var userId: Int = 30
@@ -21,6 +23,11 @@ class TimerViewModel {
 
     }
 
+    override fun onCleared() {
+
+        Log.d("Huang"," onCleared")
+        super.onCleared()
+    }
     fun updateCityList() {
 
         city.set(City("Tainan", 710))

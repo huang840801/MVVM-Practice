@@ -70,8 +70,8 @@ class MainActivity : AppCompatActivity() {
 
 //        val intent = Intent(this, ProfileActivity::class.java)
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
-//        val intent = Intent(this, TimerActivity::class.java)
-        val intent = Intent(this, LiveDataActivity::class.java)
+        val intent = Intent(this, TimerActivity::class.java)
+//        val intent = Intent(this, LiveDataActivity::class.java)
         startActivity(intent)
     }
 }
