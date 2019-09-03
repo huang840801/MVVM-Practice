@@ -11,6 +11,9 @@ interface RoomDao {
     @Query("SELECT * FROM room_entity")
     fun getAll(): List<RoomEntity>
 
+    @Query("SELECT * FROM room_entity WHERE id LIKE :id")
+    fun findById(id: Int): RoomEntity
+
     @Query("SELECT * FROM room_entity WHERE name LIKE :name")
     fun findByName(name: String): RoomEntity
 
