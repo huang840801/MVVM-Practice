@@ -21,7 +21,7 @@ abstract class RoomDbHelper : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context,
-            RoomDbHelper::class.java, "todo-list.db")
+            RoomDbHelper::class.java, "item-list.db")
             .addMigrations(MIGRATION_1_2)
             .build()
 

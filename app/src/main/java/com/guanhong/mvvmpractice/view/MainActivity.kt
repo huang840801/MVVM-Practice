@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val factory = ViewModelFactory(MainRepository())
-        viewModel = ViewModelProviders.of(this,factory).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
 
 //        viewModel = ViewModelProviders.
 //        val factory = ViewModelFactory().
@@ -49,11 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch {
 
-            val aa = db.getRoomDao().insert(RoomEntity().apply {
-
-                id = 82
-                name = "SSS"
-            })
+            val user = db.getRoomDao().findByName("Wade")
+            db.getRoomDao().delete(user)
         }
     }
 
@@ -68,9 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     fun onProfileBtnClick(view: View) {
 
-//        val intent = Intent(this, ProfileActivity::class.java)
+        val intent = Intent(this, ProfileActivity::class.java)
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
-        val intent = Intent(this, TimerActivity::class.java)
+//        val intent = Intent(this, TimerActivity::class.java)
 //        val intent = Intent(this, LiveDataActivity::class.java)
         startActivity(intent)
     }

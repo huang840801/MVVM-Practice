@@ -5,8 +5,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.guanhong.mvvmpractice.database.RoomEntity.Companion.TABLE_NAME
 
-@Entity(tableName = "room_entity")
+@Entity(tableName = TABLE_NAME)
 class RoomEntity {
 
     companion object {
