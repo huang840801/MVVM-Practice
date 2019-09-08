@@ -30,6 +30,9 @@ android {
 }
 
 dependencies {
+    
+    //Paging
+    implementation "android.arch.paging:runtime:$version_paging"
 
     //Room
     implementation "androidx.room:room-runtime:$version_room"
