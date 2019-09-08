@@ -8,7 +8,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.guanhong.mvvmpractice.database.RoomEntity.Companion.TABLE_NAME
 
-@Database(entities = [(RoomEntity::class)], version = 2)
+@Database(entities = [(RoomEntity::class)], version = 2, exportSchema = false)
 abstract class RoomDbHelper : RoomDatabase() {
 
     companion object {
