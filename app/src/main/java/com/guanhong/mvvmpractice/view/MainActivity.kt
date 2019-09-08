@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch {
 
-            val user:RoomEntity? = db.getRoomDao().findByName("Wade")
+            val user: RoomEntity? = db.getRoomDao().findByName("Wade")
 
             user?.run {
 
@@ -73,6 +73,12 @@ class MainActivity : AppCompatActivity() {
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
 //        val intent = Intent(this, TimerActivity::class.java)
 //        val intent = Intent(this, LiveDataActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun onPagingBtnClick(view: View) {
+
+        val intent = Intent(this, ProfileActivity::class.java)
         startActivity(intent)
     }
 }

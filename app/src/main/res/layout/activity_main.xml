@@ -61,6 +61,17 @@
             app:layout_constraintTop_toBottomOf="@id/heightFeet" />
 
         <Button
+            android:id="@+id/pagingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="onPagingBtnClick"
+            android:text="Paging"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileBtn" />
+
+        <Button
             android:id="@+id/refreshBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,9 +81,8 @@
             android:background="@{viewModel.color}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileBtn" />
-
-
+            app:layout_constraintTop_toBottomOf="@id/pagingBtn" />
+        
         <androidx.constraintlayout.widget.ConstraintLayout
 
             android:layout_width="match_parent"

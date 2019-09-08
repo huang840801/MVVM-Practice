@@ -23,6 +23,7 @@
         <activity android:name=".view.SpinnerSampleActivity" />
         <activity android:name=".view.TimerActivity" />
         <activity android:name=".view.LiveDataActivity" />
+        <activity android:name=".view.PagingActivity" />
     </application>
 
 </manifest>
