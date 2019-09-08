@@ -1,6 +1,7 @@
 package com.guanhong.mvvmpractice.database
 
 import androidx.room.*
+import androidx.room.Delete
 
 @Dao
 interface RoomDao {

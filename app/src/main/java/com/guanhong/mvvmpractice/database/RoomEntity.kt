@@ -1,10 +1,7 @@
 package com.guanhong.mvvmpractice.database
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.guanhong.mvvmpractice.database.RoomEntity.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)

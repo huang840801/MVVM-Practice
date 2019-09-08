@@ -11,7 +11,6 @@ import com.guanhong.mvvmpractice.database.RoomEntity.Companion.TABLE_NAME
 @Database(entities = [(RoomEntity::class)], version = 2)
 abstract class RoomDbHelper : RoomDatabase() {
 
-
     companion object {
         @Volatile private var instance: RoomDbHelper? = null
         private val LOCK = Any()
@@ -22,11 +21,11 @@ abstract class RoomDbHelper : RoomDatabase() {
 
         private fun buildDatabase(context: Context) = Room.databaseBuilder(context,
             RoomDbHelper::class.java, "item-list.db")
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_TO_2)
             .build()
 
 
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        val MIGRATION_1_TO_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
 
                 val tableName = TABLE_NAME

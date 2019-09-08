@@ -49,8 +49,12 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch {
 
-            val user = db.getRoomDao().findByName("Wade")
-            db.getRoomDao().delete(user)
+            val user:RoomEntity? = db.getRoomDao().findByName("Wade")
+
+            user?.run {
+
+                db.getRoomDao().delete(user)
+            }
         }
     }
 
