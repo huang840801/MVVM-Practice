@@ -12,8 +12,9 @@ import com.guanhong.mvvmpractice.database.RoomDbHelper
 import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
-import com.guanhong.mvvmpractice.factory.ViewModelFactory
+import com.guanhong.mvvmpractice.factory.MainViewModelFactory
 import com.guanhong.mvvmpractice.repository.MainRepository
+import com.guanhong.mvvmpractice.view.paging.PagingActivity
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,11 +27,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val factory = ViewModelFactory(MainRepository())
+        val factory = MainViewModelFactory(MainRepository())
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
 
 //        viewModel = ViewModelProviders.
-//        val factory = ViewModelFactory().
+//        val factory = MainViewModelFactory().
 
 //        binding 的第一種方法
 //        val rootView = LayoutInflater.from(this).inflate(R.layout.activity_main, null)
@@ -44,18 +45,6 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.init()
-
-        val db = RoomDbHelper(this)
-
-        GlobalScope.launch {
-
-            val user: RoomEntity? = db.getRoomDao().findByName("Wade")
-
-            user?.run {
-
-                db.getRoomDao().delete(user)
-            }
-        }
     }
 
     fun onViewClick(view: View) {
@@ -78,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     fun onPagingBtnClick(view: View) {
 
-        val intent = Intent(this, ProfileActivity::class.java)
+        val intent = Intent(this, PagingActivity::class.java)
         startActivity(intent)
     }
 }
