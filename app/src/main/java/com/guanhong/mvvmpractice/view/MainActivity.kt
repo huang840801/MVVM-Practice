@@ -8,16 +8,12 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
-import com.guanhong.mvvmpractice.database.RoomDbHelper
-import com.guanhong.mvvmpractice.database.RoomEntity
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.factory.MainViewModelFactory
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.view.paging.PagingActivity
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val factory = MainViewModelFactory(MainRepository())
+        val factory = MainViewModelFactory(MainRepository(), application)
         viewModel = ViewModelProviders.of(this, factory).get(MainViewModel::class.java)
 
 //        viewModel = ViewModelProviders.
@@ -65,7 +61,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun onPagingBtnClick(view: View) {
+    fun onItemKeyBtnClick(view: View) {
+
+        val intent = Intent(this, PagingActivity::class.java)
+        startActivity(intent)
+    }
+    fun onPagingKeyBtnClick(view: View) {
 
         val intent = Intent(this, PagingActivity::class.java)
         startActivity(intent)

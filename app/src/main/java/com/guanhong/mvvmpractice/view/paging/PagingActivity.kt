@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
-import com.guanhong.mvvmpractice.factory.MainViewModelFactory
-import com.guanhong.mvvmpractice.repository.MainRepository
+import com.guanhong.mvvmpractice.factory.PagingViewModelFactory
+import com.guanhong.mvvmpractice.repository.PagingRepository
 import com.guanhong.mvvmpractice.viewmodel.PagingViewModel
 import kotlinx.android.synthetic.main.activity_paging.*
 
@@ -19,14 +19,20 @@ class PagingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paging)
 
-        val factory = MainViewModelFactory(MainRepository())
+        val factory = PagingViewModelFactory(PagingRepository(), application)
         viewModel = ViewModelProviders.of(this,factory).get(PagingViewModel::class.java)
         adapter = PagingAdapter()
         recyclerView.adapter = adapter
 
-        viewModel.pagingDataItems.observe(this, Observer {
+//        viewModel.pagingDataItems.observe(this, Observer {
+//
+//            adapter.submitList(it)
+//        })
+
+        viewModel.pagedListLiveData.observe(this, Observer {
 
             adapter.submitList(it)
+
         })
 
     }

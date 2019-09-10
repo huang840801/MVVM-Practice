@@ -1,7 +1,7 @@
 package com.guanhong.mvvmpractice.datasource
 
 import android.util.Log
-import androidx.paging.PageKeyedDataSource
+import androidx.paging.ItemKeyedDataSource
 import com.guanhong.mvvmpractice.api.AllPlayerApi
 import com.guanhong.mvvmpractice.response.player.AllPlayerData
 import com.guanhong.mvvmpractice.response.player.DataItem
@@ -11,7 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PagingDataSource : PageKeyedDataSource<String, DataItem>() {
+class ItemKeyDataSource : ItemKeyedDataSource<String, DataItem>() {
 
     private val retrofit = Retrofit
         .Builder()
@@ -25,7 +25,7 @@ class PagingDataSource : PageKeyedDataSource<String, DataItem>() {
 
     override fun loadInitial(
         params: LoadInitialParams<String>,
-        callback: LoadInitialCallback<String, DataItem>
+        callback: LoadInitialCallback<DataItem>
     ) {
 
         Log.d("Huang", " loadInitial ")
@@ -44,16 +44,12 @@ class PagingDataSource : PageKeyedDataSource<String, DataItem>() {
                         "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
-                callback.onResult(response.body()!!.data!!, null, page.toString())
+                callback.onResult(response.body()!!.data!!, 5, 30)
             }
         })
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, DataItem>) {
-
-        Log.d("Huang", " params key " + params.key)
-        Log.d("Huang", " requestedLoadSize " + params.requestedLoadSize)
-
+    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<DataItem>) {
         val call = allPlayerData.getAllPlayer(page)
 
         call.enqueue(object : Callback<AllPlayerData> {
@@ -63,19 +59,25 @@ class PagingDataSource : PageKeyedDataSource<String, DataItem>() {
 
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
+                Log.d("Huang", " count " + response.body()!!.data!!.count())
+
                 response.body()!!.data!!.forEach {
                     it.imageUrl =
                         "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
-                callback.onResult(response.body()!!.data!!, page.toString())
+                callback.onResult(response.body()!!.data!!)
 
                 page += 1
-
             }
         })
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, DataItem>) {
+    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<DataItem>) {
+    }
+
+    override fun getKey(item: DataItem): String {
+
+        return page.toString()
     }
 }
