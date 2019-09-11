@@ -7,23 +7,14 @@ import com.guanhong.mvvmpractice.response.player.AllPlayerData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class PlayerRepository {
 
-    private val retrofit = Retrofit
-        .Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://free-nba.p.rapidapi.com/")
-        .build()
-
-    private val allPlayerData = retrofit.create(AllPlayerApi::class.java)
+    private val api = AllPlayerApi.api
 
     fun getAllPlayer(page: Int, callback: GetAllPlayerCallback) {
 
-
-        val call = allPlayerData.getAllPlayer(page)
+        val call = api.getAllPlayer(page)
 
         call.enqueue(object : Callback<AllPlayerData> {
             override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
@@ -33,7 +24,8 @@ class PlayerRepository {
             override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
 
                 response.body()!!.data!!.forEach {
-                    it.imageUrl = "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
+                    it.imageUrl =
+                        "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
                 callback.onSuccess(response.body()!!.data!!)

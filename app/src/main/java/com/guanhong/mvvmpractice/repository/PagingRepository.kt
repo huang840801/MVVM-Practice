@@ -1,7 +1,11 @@
 package com.guanhong.mvvmpractice.repository
 
+import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.guanhong.mvvmpractice.callback.PagingBoundaryCallback
+import com.guanhong.mvvmpractice.database.DataItemDbHelper
 import com.guanhong.mvvmpractice.datasource.DataSourceFactory
 import com.guanhong.mvvmpractice.response.player.DataItem
 
@@ -11,13 +15,28 @@ class PagingRepository : PagingRepositoryCallback {
         DataSourceFactory()
     }
 
-    override fun getDataItem(): LiveData<PagedList<DataItem>> {
+    override fun getDataItem(application: Application): LiveData<PagedList<DataItem>> {
 
-        val pagedListConfig =
-            PagedList.Config.Builder().setPageSize(10).setPrefetchDistance(4).build()
+        val dao = DataItemDbHelper(application).getRoomDataItemDao()
+
+        val pagedListLiveData: LiveData<PagedList<DataItem>> by lazy {
+
+            val dataSourceFactory = dao.getAllDataItem()
+            val config = PagedList.Config.Builder()
+                .setEnablePlaceholders(true)
+                .setPageSize(15)
+                .setInitialLoadSizeHint(5)
+                .build()
+
+            LivePagedListBuilder(dataSourceFactory, config)
+                .setBoundaryCallback(PagingBoundaryCallback(application))
+                .build()
+        }
+
+        return pagedListLiveData
     }
 }
 
 interface PagingRepositoryCallback {
-    fun getDataItem(): LiveData<PagedList<DataItem>>
+    fun getDataItem(application: Application): LiveData<PagedList<DataItem>>
 }
