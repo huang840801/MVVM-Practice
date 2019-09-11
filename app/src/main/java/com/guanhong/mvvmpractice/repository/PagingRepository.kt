@@ -23,9 +23,9 @@ class PagingRepository : PagingRepositoryCallback {
 
             val dataSourceFactory = dao.getAllDataItem()
             val config = PagedList.Config.Builder()
-                .setEnablePlaceholders(true)
-                .setPageSize(15)
-                .setInitialLoadSizeHint(5)
+                .setPageSize(25)
+                .setEnablePlaceholders(false)
+//                .setInitialLoadSizeHint(5)
                 .build()
 
             LivePagedListBuilder(dataSourceFactory, config)

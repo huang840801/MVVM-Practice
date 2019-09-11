@@ -10,8 +10,7 @@ import com.guanhong.mvvmpractice.viewmodel.PagingViewModel
 class PagingViewModelFactory(
     private val repository: PagingRepository,
     private val application: Application
-) :
-    ViewModelProvider.NewInstanceFactory() {
+) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>) =
         with(modelClass) {

@@ -3,17 +3,21 @@ package com.guanhong.mvvmpractice.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.database.DataItemDbHelper
 import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.factory.MainViewModelFactory
 import com.guanhong.mvvmpractice.repository.MainRepository
 import com.guanhong.mvvmpractice.view.paging.PagingActivity
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +45,12 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         viewModel.init()
+
+        val dao = DataItemDbHelper(this)
+
+        GlobalScope.launch {
+            Log.d("Huang", " dataItem in db count = " + dao.getRoomDataItemDao().getAll().count())
+        }
     }
 
     fun onViewClick(view: View) {
@@ -66,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, PagingActivity::class.java)
         startActivity(intent)
     }
+
     fun onPagingKeyBtnClick(view: View) {
 
         val intent = Intent(this, PagingActivity::class.java)

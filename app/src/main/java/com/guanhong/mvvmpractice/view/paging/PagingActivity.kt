@@ -1,10 +1,12 @@
 package com.guanhong.mvvmpractice.view.paging
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
+import com.guanhong.mvvmpractice.database.DataItemDbHelper
 import com.guanhong.mvvmpractice.factory.PagingViewModelFactory
 import com.guanhong.mvvmpractice.repository.PagingRepository
 import com.guanhong.mvvmpractice.viewmodel.PagingViewModel
@@ -24,16 +26,13 @@ class PagingActivity : AppCompatActivity() {
         adapter = PagingAdapter()
         recyclerView.adapter = adapter
 
-//        viewModel.pagingDataItems.observe(this, Observer {
-//
-//            adapter.submitList(it)
-//        })
 
         viewModel.pagedListLiveData.observe(this, Observer {
+
+            Log.d("Huang"," PagingActivity "+it.count())
 
             adapter.submitList(it)
 
         })
-
     }
 }

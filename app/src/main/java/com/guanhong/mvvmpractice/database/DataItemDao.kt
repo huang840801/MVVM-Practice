@@ -13,6 +13,8 @@ interface DataItemDao {
     @Query("SELECT * FROM DATA_ITEM_ENTITY")
     fun getAllDataItem(): DataSource.Factory<Int, DataItem>
 
+    @Query("SELECT * FROM DATA_ITEM_ENTITY")
+    fun getAll(): List<DataItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: DataItem): Long
