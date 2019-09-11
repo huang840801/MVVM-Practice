@@ -26,38 +26,21 @@ class PagingBoundaryCallback(context: Context) :
         super.onZeroItemsLoaded()
 
         Log.d("Huang", " onZeroItemsLoaded ")
-        val call = api.getAllPlayer(page)
 
-        call.enqueue(object : Callback<AllPlayerData> {
-            override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
-                Log.d("Huang", " get player fail ")
-            }
-
-            override fun onResponse(call: Call<AllPlayerData>?, response: Response<AllPlayerData>) {
-
-                response.body()!!.data!!.forEach {
-                    it.imageUrl =
-                        "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
-                }
-
-                GlobalScope.launch {
-                    response.body()!!.data!!.forEach {
-
-                        dao.insert(it)
-                    }
-                }
-                page++
-            }
-        })
+        api.getAllPlayer().enqueue(createWebserviceCallback())
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: DataItem) {
         super.onItemAtEndLoaded(itemAtEnd)
 
         Log.d("Huang", " onItemAtEndLoaded ")
-        val call = api.getAllPlayer(page)
 
-        call.clone().enqueue(object : Callback<AllPlayerData> {
+        api.getAllPlayer(page).clone().enqueue(createWebserviceCallback())
+    }
+
+    private fun createWebserviceCallback(): Callback<AllPlayerData> {
+
+        return object : Callback<AllPlayerData> {
             override fun onFailure(call: Call<AllPlayerData>?, t: Throwable?) {
                 Log.d("Huang", " get player fail ")
             }
@@ -66,24 +49,24 @@ class PagingBoundaryCallback(context: Context) :
 
                 Log.d("Huang", " onResponse " + page)
 
-
                 response.body()!!.data!!.forEach {
-                    it.imageUrl =
-                        "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
+                    it.imageUrl = "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
-                GlobalScope.launch {
 
-                    response.body()!!.data!!.forEach {
-
-                        dao.insert(it)
-                    }
-                }
+                insertItemsIntoDb(response)
                 page++
             }
-        })
+        }
     }
 
-    override fun onItemAtFrontLoaded(itemAtFront: DataItem) {
-        super.onItemAtFrontLoaded(itemAtFront)
+    private fun insertItemsIntoDb(response: Response<AllPlayerData>) {
+
+        GlobalScope.launch {
+
+            response.body()!!.data!!.forEach {
+
+                dao.insert(it)
+            }
+        }
     }
 }
