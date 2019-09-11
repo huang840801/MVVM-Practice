@@ -11,7 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ItemKeyDataSource : ItemKeyedDataSource<String, DataItem>() {
+class ItemKeyDataSource : ItemKeyedDataSource<Int, DataItem>() {
 
     private val retrofit = Retrofit
         .Builder()
@@ -24,7 +24,7 @@ class ItemKeyDataSource : ItemKeyedDataSource<String, DataItem>() {
     private var page = 1
 
     override fun loadInitial(
-        params: LoadInitialParams<String>,
+        params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<DataItem>
     ) {
 
@@ -49,7 +49,7 @@ class ItemKeyDataSource : ItemKeyedDataSource<String, DataItem>() {
         })
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<DataItem>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<DataItem>) {
         val call = allPlayerData.getAllPlayer(page)
 
         call.enqueue(object : Callback<AllPlayerData> {
@@ -73,11 +73,11 @@ class ItemKeyDataSource : ItemKeyedDataSource<String, DataItem>() {
         })
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<DataItem>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<DataItem>) {
     }
 
-    override fun getKey(item: DataItem): String {
+    override fun getKey(item: DataItem): Int {
 
-        return page.toString()
+        return page
     }
 }

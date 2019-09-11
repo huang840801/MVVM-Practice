@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.guanhong.mvvmpractice.R
-import com.guanhong.mvvmpractice.database.DataItemDbHelper
 import com.guanhong.mvvmpractice.factory.PagingViewModelFactory
 import com.guanhong.mvvmpractice.repository.PagingRepository
 import com.guanhong.mvvmpractice.viewmodel.PagingViewModel

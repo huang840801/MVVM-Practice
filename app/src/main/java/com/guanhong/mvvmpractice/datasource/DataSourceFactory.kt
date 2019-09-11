@@ -5,12 +5,12 @@ import androidx.paging.DataSource
 import com.guanhong.mvvmpractice.response.player.DataItem
 
 class DataSourceFactory :
-    DataSource.Factory<String, DataItem>() {
+    DataSource.Factory<Int, DataItem>() {
 
 //    private val sourceLiveData = MutableLiveData<PagingKeyDataSource>()
     private val sourceLiveData = MutableLiveData<ItemKeyDataSource>()
 
-    override fun create(): DataSource<String, DataItem> {
+    override fun create(): DataSource<Int, DataItem> {
 
 //        val source = PagingKeyDataSource()
 //        sourceLiveData.postValue(source)

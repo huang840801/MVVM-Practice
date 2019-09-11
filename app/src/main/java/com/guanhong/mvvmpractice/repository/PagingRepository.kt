@@ -5,15 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.guanhong.mvvmpractice.callback.PagingBoundaryCallback
+import com.guanhong.mvvmpractice.database.DataItemDao
 import com.guanhong.mvvmpractice.database.DataItemDbHelper
 import com.guanhong.mvvmpractice.datasource.DataSourceFactory
 import com.guanhong.mvvmpractice.response.player.DataItem
 
 class PagingRepository : PagingRepositoryCallback {
 
-    private val sourceFactory by lazy {
+    private val remoteSourceFactory by lazy {
         DataSourceFactory()
     }
+
+    private lateinit var localSourceFactory: DataItemDao
 
     override fun getDataItem(application: Application): LiveData<PagedList<DataItem>> {
 
@@ -21,14 +24,16 @@ class PagingRepository : PagingRepositoryCallback {
 
         val pagedListLiveData: LiveData<PagedList<DataItem>> by lazy {
 
-            val dataSourceFactory = dao.getAllDataItem()
+            val localDataSource = dao.getAllDataItem()
+            val remoteDataSource = remoteSourceFactory
+
             val config = PagedList.Config.Builder()
                 .setPageSize(25)
                 .setEnablePlaceholders(false)
 //                .setInitialLoadSizeHint(5)
                 .build()
 
-            LivePagedListBuilder(dataSourceFactory, config)
+            LivePagedListBuilder(remoteDataSource, config)
                 .setBoundaryCallback(PagingBoundaryCallback(application))
                 .build()
         }
