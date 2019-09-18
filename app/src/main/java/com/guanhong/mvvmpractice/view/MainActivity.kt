@@ -14,6 +14,7 @@ import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.factory.MainViewModelFactory
 import com.guanhong.mvvmpractice.repository.MainRepository
+import com.guanhong.mvvmpractice.view.navigation.NavigationActivity
 import com.guanhong.mvvmpractice.view.paging.PagingActivity
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 import kotlinx.coroutines.GlobalScope
@@ -64,10 +65,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onProfileBtnClick(view: View) {
 
-        val intent = Intent(this, ProfileActivity::class.java)
+//        val intent = Intent(this, ProfileActivity::class.java)
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
 //        val intent = Intent(this, TimerActivity::class.java)
 //        val intent = Intent(this, LiveDataActivity::class.java)
+        val intent = Intent(this, NavigationActivity::class.java)
         startActivity(intent)
     }
 
