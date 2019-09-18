@@ -24,6 +24,7 @@
         <activity android:name=".view.TimerActivity" />
         <activity android:name=".view.LiveDataActivity" />
         <activity android:name="com.guanhong.mvvmpractice.view.paging.PagingActivity" />
+        <activity android:name=".view.navigation.NavigationActivity"/>
     </application>
 
 </manifest>
