@@ -11,16 +11,11 @@
         android:label="fragment_page1"
         tools:layout="@layout/fragment_navigation_one">
         <action
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
             android:id="@+id/action_page2"
             app:destination="@id/page2Fragment" />
     </fragment>
 
     <fragment
-        app:enterAnim="@anim/slide_in_right"
         android:id="@+id/page2Fragment"
         android:name="com.guanhong.mvvmpractice.view.navigation.FragmentTwo"
         android:label="fragment_page2"
