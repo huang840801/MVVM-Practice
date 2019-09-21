@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_page2"
             app:destination="@id/page2Fragment" />
+        <argument
+            android:name="args"
+            app:argType="string"
+            android:defaultValue="444" />
     </fragment>
 
     <fragment
@@ -36,4 +40,9 @@
         tools:layout="@layout/fragment_navigation_three">
 
     </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.guanhong.mvvmpractice.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" />
 </navigation>

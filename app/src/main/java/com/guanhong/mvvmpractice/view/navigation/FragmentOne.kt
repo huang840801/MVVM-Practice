@@ -33,9 +33,13 @@ class FragmentOne : Fragment() {
             catImageView to "catImage",
             textView to "catText"
         )
+
+        val bundle = Bundle()
+
+        bundle.putString("key"," testValue")
         catImageView.setOnClickListener {
 
-            Navigation.findNavController(it).navigate(R.id.action_page2, null, null, extras)
+            Navigation.findNavController(it).navigate(R.id.action_page2, bundle, null, extras)
         }
     }
 }

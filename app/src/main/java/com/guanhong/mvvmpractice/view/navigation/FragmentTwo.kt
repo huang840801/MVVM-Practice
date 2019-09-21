@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.guanhong.mvvmpractice.R
 import kotlinx.android.synthetic.main.fragment_navigation_two.*
 
-class FragmentTwo : Fragment() {
+class FragmentTwo : Fragment(), FragmentTwoAdapter.FragmentTwoAdapterListener {
+
+    private lateinit var adapter: FragmentTwoAdapter
+
+    private var args: String? = null
+    private val stringList = listOf("111", "222", "333", "444", "555")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +36,27 @@ class FragmentTwo : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter = FragmentTwoAdapter(this)
+        recyclerView.adapter = adapter
+
+        adapter.setStringList(stringList)
+
+        arguments?.let {
+            args = it.getString("key")
+        }
+
         textView.setOnClickListener {
 
             Navigation.findNavController(it).navigate(R.id.action_page3)
         }
+    }
+
+    override fun itemClick(title: String) {
+
+        val bundle = Bundle()
+
+        bundle.putString("titleKey", title)
+
+        findNavController().navigate(R.id.action_page3, bundle)
     }
 }
