@@ -29,7 +29,9 @@ class FragmentThree : Fragment() {
 
         textView.setOnClickListener {
 
-            Navigation.findNavController(it).navigateUp()
+            Navigation.findNavController(it).navigate(R.id.action_page3Fragment_to_navigation)
+
+//            Navigation.findNavController(it).navigateUp()
         }
     }
 }

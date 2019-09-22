@@ -15,8 +15,8 @@
             app:destination="@id/page2Fragment" />
         <argument
             android:name="args"
-            app:argType="string"
-            android:defaultValue="444" />
+            android:defaultValue="444"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -26,11 +26,11 @@
         tools:layout="@layout/fragment_navigation_two">
         <action
             android:id="@+id/action_page3"
+            app:destination="@id/page3Fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:destination="@id/page3Fragment" />
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -39,10 +39,28 @@
         android:label="fragment_page3"
         tools:layout="@layout/fragment_navigation_three">
 
+        <action
+            android:id="@+id/action_page3Fragment_to_navigation"
+            app:destination="@id/navigation" />
     </fragment>
-    <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.guanhong.mvvmpractice.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+    <navigation
+        android:id="@+id/navigation"
+        app:startDestination="@id/blankFragment">
+        <fragment
+            android:id="@+id/blankFragment"
+            android:name="com.guanhong.mvvmpractice.view.navigation.BlankFragment"
+            android:label="fragment_blank"
+            tools:layout="@layout/fragment_blank" >
+            <action
+                android:id="@+id/action_blankFragment_to_blankFragment2"
+                app:destination="@id/blankFragment2"
+                app:popUpTo="@id/page3Fragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/blankFragment2"
+            android:name="com.guanhong.mvvmpractice.view.navigation.BlankFragment2"
+            android:label="fragment_blank_fragment2"
+            tools:layout="@layout/fragment_blank_fragment2" />
+    </navigation>
+
 </navigation>
