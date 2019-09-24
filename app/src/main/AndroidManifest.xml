@@ -25,6 +25,7 @@
         <activity android:name=".view.LiveDataActivity" />
         <activity android:name="com.guanhong.mvvmpractice.view.paging.PagingActivity" />
         <activity android:name=".view.navigation.NavigationActivity"/>
+        <activity android:name=".view.navigation.CustomNavControllerActivity"/>
     </application>
 
 </manifest>

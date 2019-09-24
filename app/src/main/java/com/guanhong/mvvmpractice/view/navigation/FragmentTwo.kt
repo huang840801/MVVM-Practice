@@ -1,6 +1,7 @@
 package com.guanhong.mvvmpractice.view.navigation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,9 @@ class FragmentTwo : Fragment(), FragmentTwoAdapter.FragmentTwoAdapterListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Log.d("Huang"," FragmentTwo onCreate")
+
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
@@ -29,6 +33,8 @@ class FragmentTwo : Fragment(), FragmentTwoAdapter.FragmentTwoAdapterListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.d("Huang"," FragmentTwo onCreateView")
 
         return inflater.inflate(R.layout.fragment_navigation_two, container, false)
     }
