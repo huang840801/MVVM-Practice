@@ -14,7 +14,7 @@ import com.guanhong.mvvmpractice.databinding.ActivityMainBinding
 import com.guanhong.mvvmpractice.extension.showToast
 import com.guanhong.mvvmpractice.factory.MainViewModelFactory
 import com.guanhong.mvvmpractice.repository.MainRepository
-import com.guanhong.mvvmpractice.view.navigation.CustomNavControllerActivity
+import com.guanhong.mvvmpractice.view.navigation.NavigationActivity
 import com.guanhong.mvvmpractice.view.paging.PagingActivity
 import com.guanhong.mvvmpractice.viewmodel.MainViewModel
 import kotlinx.coroutines.GlobalScope
@@ -69,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 //        val intent = Intent(this, SpinnerSampleActivity::class.java)
 //        val intent = Intent(this, TimerActivity::class.java)
 //        val intent = Intent(this, LiveDataActivity::class.java)
-//        val intent = Intent(this, NavigationActivity::class.java)
-        val intent = Intent(this, CustomNavControllerActivity::class.java)
+        val intent = Intent(this, NavigationActivity::class.java)
+//        val intent = Intent(this, CustomNavControllerActivity::class.java)
         startActivity(intent)
     }
 

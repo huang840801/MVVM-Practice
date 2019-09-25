@@ -1,7 +1,6 @@
 package com.guanhong.mvvmpractice.view.navigation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ class FragmentOne : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("Huang"," FragmentOne onCreate ")
 
     }
     override fun onCreateView(
@@ -28,7 +26,6 @@ class FragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        Log.d("Huang"," FragmentOne onCreateView")
 
         return inflater.inflate(R.layout.fragment_navigation_one, container, false)
     }
@@ -38,7 +35,7 @@ class FragmentOne : Fragment() {
 
         textView.setOnClickListener {
 
-            Navigation.findNavController(it).navigate(R.id.action_page2)
+            Navigation.findNavController(it).navigate(R.id.action_page1_to_action_page2)
         }
 
         val extras = FragmentNavigatorExtras(
@@ -51,7 +48,7 @@ class FragmentOne : Fragment() {
         bundle.putString("key"," testValue")
         catImageView.setOnClickListener {
 
-            findNavController().navigate(R.id.action_page2, bundle,NavOptions.Builder().setLaunchSingleTop(true).build(), extras)
+            findNavController().navigate(R.id.action_page1_to_action_page2, bundle,NavOptions.Builder().setLaunchSingleTop(true).build(), extras)
 
 //            Navigation.findNavController(it).navigate(R.id.action_page2, bundle, null, extras)
         }

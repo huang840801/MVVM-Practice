@@ -11,7 +11,7 @@
         android:label="fragment_page1"
         tools:layout="@layout/fragment_navigation_one">
         <action
-            android:id="@+id/action_page2"
+            android:id="@+id/action_page1_to_action_page2"
             app:destination="@id/page2Fragment" />
         <argument
             android:name="args"
@@ -25,12 +25,16 @@
         android:label="fragment_page2"
         tools:layout="@layout/fragment_navigation_two">
         <action
-            android:id="@+id/action_page3"
+            android:id="@+id/action_page2_to_action_page3"
             app:destination="@id/page3Fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="m.facebook.com"
+            android:autoVerify="true" />
     </fragment>
 
     <fragment

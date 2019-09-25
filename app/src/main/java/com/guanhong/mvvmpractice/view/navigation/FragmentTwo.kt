@@ -1,12 +1,15 @@
 package com.guanhong.mvvmpractice.view.navigation
 
+import android.app.NotificationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.guanhong.mvvmpractice.R
@@ -53,7 +56,28 @@ class FragmentTwo : Fragment(), FragmentTwoAdapter.FragmentTwoAdapterListener {
 
         textView.setOnClickListener {
 
-            Navigation.findNavController(it).navigate(R.id.action_page3)
+
+            val args = Bundle()
+            args.putString("args", "1111")
+
+            val pendingIntent = NavDeepLinkBuilder(context!!)
+                .setGraph(R.navigation.nav_graph_main)
+                .setDestination(R.id.page3Fragment)
+                .setArguments(args)
+                .createPendingIntent()
+
+            val builder = NotificationCompat.Builder(context)
+                .setContentTitle("標題")
+                .setContentText("内容")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+
+            val notificationManager = context!!.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as (NotificationManager)
+
+            notificationManager.notify(0, builder.build())
+
+//            Navigation.findNavController(it).navigate(R.id.action_page3)
         }
     }
 
@@ -63,6 +87,6 @@ class FragmentTwo : Fragment(), FragmentTwoAdapter.FragmentTwoAdapterListener {
 
         bundle.putString("titleKey", title)
 
-        findNavController().navigate(R.id.action_page3, bundle)
+        findNavController().navigate(R.id.action_page2_to_action_page3, bundle)
     }
 }
