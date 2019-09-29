@@ -11,7 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PagingKeyDataSource : PageKeyedDataSource<String, DataItem>() {
+class PagingKeyDataSource : PageKeyedDataSource<Int, DataItem>() {
 
     private val retrofit = Retrofit
         .Builder()
@@ -24,8 +24,8 @@ class PagingKeyDataSource : PageKeyedDataSource<String, DataItem>() {
     private var page = 1
 
     override fun loadInitial(
-        params: LoadInitialParams<String>,
-        callback: LoadInitialCallback<String, DataItem>
+        params: LoadInitialParams<Int>,
+        callback: LoadInitialCallback<Int, DataItem>
     ) {
 
         Log.d("Huang", " loadInitial ")
@@ -44,12 +44,12 @@ class PagingKeyDataSource : PageKeyedDataSource<String, DataItem>() {
                         "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
-                callback.onResult(response.body()!!.data!!, null, page.toString())
+                callback.onResult(response.body()!!.data!!, null, page)
             }
         })
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, DataItem>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, DataItem>) {
 
 //        Log.d("Huang", " params key " + params.key)
 //        Log.d("Huang", " requestedLoadSize " + params.requestedLoadSize)
@@ -71,14 +71,13 @@ class PagingKeyDataSource : PageKeyedDataSource<String, DataItem>() {
                         "https://pdc.princeton.edu/sites/pdc/files/events/new-nba-logo-1.png"
                 }
 
-                callback.onResult(response.body()!!.data!!, page.toString())
+                callback.onResult(response.body()!!.data!!, page)
 
                 page += 1
-
             }
         })
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, DataItem>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, DataItem>) {
     }
 }
