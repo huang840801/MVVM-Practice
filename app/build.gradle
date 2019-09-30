@@ -33,6 +33,9 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    //WorkManager
+    implementation "androidx.work:work-runtime-ktx:2.2.0"
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.2.0-alpha02"
     implementation "androidx.navigation:navigation-ui-ktx:2.2.0-alpha02"
